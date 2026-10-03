@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Portal | CareConnect Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar no-print">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>Care<span class="highlight">Connect</span></div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="doctors.html">Find Doctor</a></li>
+        <li><a href="patient-dashboard.html" class="active">Patient Portal</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <!-- Injected dynamically by main.js -->
+      </div>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="no-print">
+    <div class="container" style="padding-top: 32px; padding-bottom: 60px;">
+      
+      <!-- Greeting Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="section-tag"><i class="fa-solid fa-hospital-user"></i> Patient Dashboard</span>
+          <h1 id="patient-greeting" style="font-size: 2rem; font-weight: 800; color: var(--dark); margin-top: 6px;">
+            Welcome, Patient
+          </h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Manage your doctor consultations, track upcoming appointments, and update personal profile details.
+          </p>
+        </div>
+        <div>
+          <a href="doctors.html" class="btn btn-primary">
+            <i class="fa-solid fa-calendar-plus"></i> Book New Appointment
+          </a>
+        </div>
+      </div>
+
+      <!-- Patient Metrics Stat Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-upcoming">0</h3>
+            <p>Upcoming Appointments</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa-solid fa-clipboard-check"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-completed">0</h3>
+            <p>Completed Visits</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="fa-solid fa-calendar-xmark"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-cancelled">0</h3>
+            <p>Cancelled Bookings</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon amber"><i class="fa-solid fa-notes-medical"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-total">0</h3>
+            <p>Total Consultations</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="tab-upcoming">
+          <i class="fa-regular fa-clock"></i> Upcoming Appointments
+        </button>
+        <button class="tab-btn" data-tab="tab-history">
+          <i class="fa-solid fa-clock-rotate-left"></i> Appointment History
+        </button>
+        <button class="tab-btn" data-tab="tab-profile">
+          <i class="fa-regular fa-user"></i> My Medical Profile
+        </button>
+      </div>
+
+      <!-- Tab 1: Upcoming Appointments -->
+      <div class="tab-content active" id="tab-upcoming">
+        <div id="upcoming-appointments-list" class="appointment-list-grid">
+          <div class="spinner-wrapper" style="grid-column: 1 / -1;">
+            <div class="spinner"></div>
+            <p>Loading appointments...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Appointment History Table -->
+      <div class="tab-content" id="tab-history">
+        <div class="data-panel">
+          <div class="data-panel-header">
+            <div class="data-panel-title">
+              <h3>All Appointment Records</h3>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Appointment ID</th>
+                  <th>Doctor & Specialty</th>
+                  <th>Date</th>
+                  <th>Time Slot</th>
+                  <th>Reason</th>
+                  <th>Status</th>
+                  <th>Slip</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <tr>
+                  <td colspan="7" style="text-align: center; padding: 24px;">Loading appointment records...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Profile Management -->
+      <div class="tab-content" id="tab-profile">
+        <div style="max-width: 680px; background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--dark); margin-bottom: 20px;">
+            Personal & Health Profile Information
+          </h3>
+
+          <form id="profile-form">
+            <div class="form-group">
+              <label class="form-label" for="profile-name">Full Name</label>
+              <input type="text" id="profile-name" class="form-control" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label class="form-label" for="profile-email">Email Address</label>
+                <input type="email" id="profile-email" class="form-control" readonly style="background: var(--bg-page); color: var(--text-muted);">
+                <small class="form-text">Email address is tied to your account credentials.</small>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="profile-phone">Mobile Phone</label>
+                <input type="text" id="profile-phone" class="form-control" placeholder="+91 98220 12345" required>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label class="form-label" for="profile-dob">Date of Birth</label>
+                <input type="date" id="profile-dob" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="profile-gender">Gender</label>
+                <select id="profile-gender" class="form-select">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="profile-address">Residential Address</label>
+              <textarea id="profile-address" class="form-control" rows="2" placeholder="Enter street, area, city, pincode"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-floppy-disk"></i> Save Profile Details
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Printable Appointment Modal -->
+  <div class="modal-overlay" id="printable-receipt-modal">
+    <div class="modal-container" style="max-width: 660px;">
+      <div class="modal-header no-print">
+        <h3><i class="fa-solid fa-receipt" style="color: var(--primary);"></i> Appointment Confirmation Slip</h3>
+        <button class="modal-close-btn" onclick="closePrintModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="printable-slip-content">
+        <!-- Injected dynamically -->
+      </div>
+      <div class="modal-footer no-print">
+        <button class="btn btn-primary" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Print Confirmation
+        </button>
+        <button class="btn btn-outline-dark" onclick="closePrintModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer no-print">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 CareConnect Hospital &bull; "Your Health, Our Priority"</div>
+        <div><a href="index.html" style="color: #94a3b8;">Home</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/patient-dashboard.js"></script>
+</body>
+</html>

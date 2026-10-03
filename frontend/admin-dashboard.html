@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | CareConnect Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .admin-section { display: none; }
+    .admin-section.active { display: block; animation: fadeIn 0.2s ease-out; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner" style="max-width: 100%;">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>Care<span class="highlight">Connect</span> <span style="font-size: 0.8rem; font-weight: 700; color: #ef4444; background: #fee2e2; padding: 2px 8px; border-radius: 9999px;">ADMIN</span></div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-globe"></i> View Website</a>
+        <button onclick="logout()" class="btn btn-danger btn-sm"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-wrapper">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div class="sidebar-user-info">
+            <h4>Hospital Admin</h4>
+            <span>Super Administrator</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" class="admin-nav-link active" data-section="sec-overview">
+            <i class="fa-solid fa-chart-pie"></i> Overview Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#" class="admin-nav-link" data-section="sec-doctors">
+            <i class="fa-solid fa-user-doctor"></i> Doctor Management
+          </a>
+        </li>
+        <li>
+          <a href="#" class="admin-nav-link" data-section="sec-departments">
+            <i class="fa-solid fa-hospital"></i> Department Management
+          </a>
+        </li>
+        <li>
+          <a href="#" class="admin-nav-link" data-section="sec-patients">
+            <i class="fa-solid fa-hospital-user"></i> Registered Patients
+          </a>
+        </li>
+        <li>
+          <a href="#" class="admin-nav-link" data-section="sec-appointments">
+            <i class="fa-solid fa-calendar-check"></i> All Appointments
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button onclick="logout()" class="btn btn-outline-dark btn-sm" style="width: 100%;">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main">
+      
+      <!-- ========================================== -->
+      <!-- SECTION 1: OVERVIEW & REAL-DATA CHARTS -->
+      <!-- ========================================== -->
+      <section class="admin-section active" id="sec-overview">
+        <div class="dashboard-topbar">
+          <div class="dashboard-title">
+            <h1>Clinical Administration Overview</h1>
+            <p>Real-time analytics and hospital operations performance summary.</p>
+          </div>
+          <div class="dashboard-actions">
+            <button class="btn btn-outline-dark btn-sm" onclick="loadOverviewStats()">
+              <i class="fa-solid fa-rotate"></i> Refresh Stats
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="stat-info">
+              <h3 id="stat-total-doctors">0</h3>
+              <p>Total Registered Doctors</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon teal"><i class="fa-solid fa-hospital-user"></i></div>
+            <div class="stat-info">
+              <h3 id="stat-total-patients">0</h3>
+              <p>Total Registered Patients</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="stat-info">
+              <h3 id="stat-total-appointments">0</h3>
+              <p>Total System Bookings</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon amber"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-info">
+              <h3 id="stat-today-appointments">0</h3>
+              <p>Today's Consultations</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Data Charts Grid -->
+        <div class="charts-grid">
+          <!-- Chart 1: Appointments by Department -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3><i class="fa-solid fa-chart-column" style="color: var(--primary);"></i> Appointments by Department</h3>
+            </div>
+            <div class="chart-bars-container" id="chart-dept-bars">
+              <div class="spinner-wrapper"><div class="spinner"></div></div>
+            </div>
+          </div>
+
+          <!-- Chart 2: Status Distribution -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3><i class="fa-solid fa-chart-pie" style="color: var(--secondary);"></i> Booking Status Distribution</h3>
+            </div>
+            <div class="chart-bars-container" id="chart-status-bars">
+              <div class="spinner-wrapper"><div class="spinner"></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION 2: DOCTOR MANAGEMENT -->
+      <!-- ========================================== -->
+      <section class="admin-section" id="sec-doctors">
+        <div class="dashboard-topbar">
+          <div class="dashboard-title">
+            <h1>Doctor Management</h1>
+            <p>Add new clinical faculty, edit visiting hours, update consultation fees, or remove profiles.</p>
+          </div>
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" onclick="openAddDoctorModal()">
+              <i class="fa-solid fa-user-plus"></i> Add New Doctor
+            </button>
+          </div>
+        </div>
+
+        <div class="data-panel">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Doctor Name & Qualification</th>
+                  <th>Department & Specialty</th>
+                  <th>Experience</th>
+                  <th>Fee</th>
+                  <th>Schedule</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-doctors-table-body">
+                <tr><td colspan="7" style="text-align: center; padding: 24px;">Loading doctors...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION 3: DEPARTMENT MANAGEMENT -->
+      <!-- ========================================== -->
+      <section class="admin-section" id="sec-departments">
+        <div class="dashboard-topbar">
+          <div class="dashboard-title">
+            <h1>Department Management</h1>
+            <p>Configure medical units, clinical specialties, and department descriptions.</p>
+          </div>
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" onclick="openAddDepartmentModal()">
+              <i class="fa-solid fa-folder-plus"></i> Add Department
+            </button>
+          </div>
+        </div>
+
+        <div class="data-panel">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Dept ID</th>
+                  <th>Department Name</th>
+                  <th>Clinical Description</th>
+                  <th>Faculty Count</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-departments-table-body">
+                <tr><td colspan="5" style="text-align: center; padding: 24px;">Loading departments...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION 4: PATIENT MANAGEMENT -->
+      <!-- ========================================== -->
+      <section class="admin-section" id="sec-patients">
+        <div class="dashboard-topbar">
+          <div class="dashboard-title">
+            <h1>Registered Patient Records</h1>
+            <p>Access patient demographics, contact details, and booking frequencies.</p>
+          </div>
+        </div>
+
+        <div class="data-panel">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Gender</th>
+                  <th>Date of Birth</th>
+                  <th>Total Bookings</th>
+                </tr>
+              </thead>
+              <tbody id="admin-patients-table-body">
+                <tr><td colspan="7" style="text-align: center; padding: 24px;">Loading patients...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- SECTION 5: APPOINTMENTS MANAGEMENT -->
+      <!-- ========================================== -->
+      <section class="admin-section" id="sec-appointments">
+        <div class="dashboard-topbar">
+          <div class="dashboard-title">
+            <h1>All Hospital Appointments</h1>
+            <p>Supervise booking statuses, confirm consultations, or cancel appointments across all departments.</p>
+          </div>
+        </div>
+
+        <div class="data-panel">
+          <div class="filter-toolbar">
+            <div class="search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="admin-search-appointment" class="form-control" placeholder="Search patient or doctor...">
+            </div>
+
+            <div style="min-width: 160px;">
+              <select id="admin-filter-status" class="form-select" onchange="loadAppointmentsSection()">
+                <option value="">All Statuses</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+
+            <div style="min-width: 160px;">
+              <input type="date" id="admin-filter-date" class="form-control" onchange="loadAppointmentsSection()">
+            </div>
+
+            <button class="btn btn-outline-dark btn-sm" onclick="document.getElementById('admin-filter-status').value=''; document.getElementById('admin-filter-date').value=''; document.getElementById('admin-search-appointment').value=''; loadAppointmentsSection();">
+              Clear Filters
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Patient</th>
+                  <th>Doctor & Dept</th>
+                  <th>Date</th>
+                  <th>Time Slot</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-appointments-table-body">
+                <tr><td colspan="7" style="text-align: center; padding: 24px;">Loading appointments...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal: Add / Edit Doctor -->
+  <div class="modal-overlay" id="doctor-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="doctor-modal-title">Add New Doctor</h3>
+        <button class="modal-close-btn" onclick="closeDoctorModal()">&times;</button>
+      </div>
+      <form id="doctor-form" onsubmit="handleDoctorFormSubmit(event)">
+        <div class="modal-body">
+          <input type="hidden" id="doc-form-id">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="doc-form-name">Doctor Full Name</label>
+              <input type="text" id="doc-form-name" class="form-control" placeholder="Dr. Firstname Lastname" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="doc-form-email">Email Address</label>
+              <input type="email" id="doc-form-email" class="form-control" placeholder="doctor@careconnect.example" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="doc-form-phone">Contact Phone</label>
+              <input type="text" id="doc-form-phone" class="form-control" placeholder="+91 91234 56789">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="doc-form-gender">Gender</label>
+              <select id="doc-form-gender" class="form-select">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="doc-form-qual">Qualification</label>
+              <input type="text" id="doc-form-qual" class="form-control" placeholder="MBBS, MD" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="doc-form-spec">Specialization</label>
+              <input type="text" id="doc-form-spec" class="form-control" placeholder="Cardiologist, Physician" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="doc-form-dept">Department</label>
+              <select id="doc-form-dept" class="form-select" required></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="doc-form-exp">Experience (Yrs)</label>
+              <input type="number" id="doc-form-exp" class="form-control" min="0" max="60" value="5" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="doc-form-fee">Fee (₹)</label>
+              <input type="number" id="doc-form-fee" class="form-control" min="0" step="50" value="500" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="doc-form-days">Available Days</label>
+              <input type="text" id="doc-form-days" class="form-control" value="Monday - Friday" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="doc-form-time">Visiting Hours</label>
+              <input type="text" id="doc-form-time" class="form-control" value="09:00 AM - 05:00 PM" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="doc-form-desc">Doctor Profile Bio</label>
+            <textarea id="doc-form-desc" class="form-control" rows="3" placeholder="Brief clinical background and achievements..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" onclick="closeDoctorModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Doctor Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Department -->
+  <div class="modal-overlay" id="department-modal">
+    <div class="modal-container" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="dept-modal-title">Add Department</h3>
+        <button class="modal-close-btn" onclick="closeDepartmentModal()">&times;</button>
+      </div>
+      <form id="department-form" onsubmit="handleDepartmentFormSubmit(event)">
+        <div class="modal-body">
+          <input type="hidden" id="dept-form-id">
+
+          <div class="form-group">
+            <label class="form-label" for="dept-form-name">Department Name</label>
+            <input type="text" id="dept-form-name" class="form-control" placeholder="E.g. Oncology, Urology" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="dept-form-icon">FontAwesome Icon Class</label>
+            <input type="text" id="dept-form-icon" class="form-control" value="fa-hospital">
+            <small class="form-text">Example: fa-heart-pulse, fa-brain, fa-bone, fa-baby</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="dept-form-desc">Department Description</label>
+            <textarea id="dept-form-desc" class="form-control" rows="3" placeholder="Clinical purpose and scope of this specialty unit..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" onclick="closeDepartmentModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Department</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

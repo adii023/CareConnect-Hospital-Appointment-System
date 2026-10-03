@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Doctors | CareConnect Hospital</title>
+  <meta name="description" content="Search and filter qualified doctors at CareConnect Hospital by department, specialty, and availability.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>Care<span class="highlight">Connect</span></div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="doctors.html" class="active">Find Doctor</a></li>
+        <li><a href="index.html#departments">Departments</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <a href="login.html" class="btn btn-outline-dark btn-sm">Login</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 80px;">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div style="margin-bottom: 32px;">
+        <span class="section-tag"><i class="fa-solid fa-user-doctor"></i> Medical Directory</span>
+        <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--dark); margin-top: 6px;">Find Trusted Doctors</h1>
+        <p style="color: var(--text-muted); font-size: 1rem;">
+          Browse clinical profiles, check consultation fees, verify hospital timings, and book your visit.
+        </p>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 32px;">
+        <div style="display: grid; grid-template-columns: 2fr 1.2fr 1fr auto; gap: 16px; align-items: flex-end;">
+          
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="search-doctor">
+              <i class="fa-solid fa-magnifying-glass" style="color: var(--primary);"></i> Search Doctor
+            </label>
+            <input type="text" id="search-doctor" class="form-control" placeholder="Search doctor by name, qualification, specialty...">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="filter-department">
+              <i class="fa-solid fa-hospital" style="color: var(--secondary);"></i> Department
+            </label>
+            <select id="filter-department" class="form-select">
+              <option value="">All Departments</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="filter-gender">
+              <i class="fa-solid fa-venus-mars" style="color: var(--primary);"></i> Gender
+            </label>
+            <select id="filter-gender" class="form-select">
+              <option value="">All Genders</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+
+          <div>
+            <button class="btn btn-outline-dark" style="height: 44px;" onclick="resetFilters()" title="Reset Filters">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Count Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div id="doctors-count-label" style="font-weight: 700; color: var(--text-muted); font-size: 0.95rem;">
+          Showing doctors...
+        </div>
+      </div>
+
+      <!-- Doctors Grid -->
+      <div class="doctors-grid" id="doctors-grid">
+        <div class="spinner-wrapper" style="grid-column: 1 / -1;">
+          <div class="spinner"></div>
+          <p>Loading doctors...</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 CareConnect Hospital &bull; "Your Health, Our Priority"</div>
+        <div><a href="index.html" style="color: #94a3b8;">Back to Home</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/doctors.js"></script>
+</body>
+</html>

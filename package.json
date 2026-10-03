@@ -1,0 +1,27 @@
+{
+  "name": "careconnect-hospital",
+  "version": "1.0.0",
+  "description": "CareConnect Hospital Appointment System - TY Computer Science Project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "hospital-appointment-system",
+    "healthcare",
+    "doctor-booking",
+    "express",
+    "sqlite",
+    "mysql",
+    "tycs-project"
+  ],
+  "author": "CareConnect Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  }
+}

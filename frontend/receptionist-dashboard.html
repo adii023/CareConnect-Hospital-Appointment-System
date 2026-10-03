@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receptionist Desk | CareConnect Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner" style="max-width: 100%;">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>Care<span class="highlight">Connect</span> <span style="font-size: 0.8rem; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 2px 8px; border-radius: 9999px;">RECEPTION</span></div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-globe"></i> Website</a>
+        <button onclick="logout()" class="btn btn-danger btn-sm"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding: 32px 24px;">
+    <div class="container" style="max-width: 1400px;">
+      
+      <!-- Top Title & Quick Actions -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="section-tag"><i class="fa-solid fa-clipboard-user"></i> Outpatient Reception</span>
+          <h1 id="reception-greeting" style="font-size: 1.8rem; font-weight: 800; color: var(--dark); margin-top: 6px;">
+            Reception Desk
+          </h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Manage daily appointments, register walk-in patients, update consultation statuses, and reschedule slots.
+          </p>
+        </div>
+
+        <div>
+          <button class="btn btn-primary" onclick="openWalkinModal()">
+            <i class="fa-solid fa-calendar-plus"></i> Walk-in Patient Booking
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Schedule Panel -->
+      <div class="data-panel">
+        <div class="data-panel-header">
+          <div class="data-panel-title">
+            <h3>Daily Consultation Schedule</h3>
+          </div>
+          <div>
+            <span class="status-badge status-confirmed" id="today-count-badge">Loading...</span>
+          </div>
+        </div>
+
+        <div class="filter-toolbar">
+          <div style="min-width: 200px;">
+            <label class="form-label" style="margin-bottom: 4px; font-size: 0.78rem;">Schedule Date</label>
+            <input type="date" id="schedule-date-picker" class="form-control">
+          </div>
+
+          <div class="search-input-wrap" style="padding-top: 18px;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="reception-search" class="form-control" placeholder="Search patient name, phone, or doctor...">
+          </div>
+
+          <div style="padding-top: 18px;">
+            <button class="btn btn-outline-dark btn-sm" onclick="document.getElementById('reception-search').value=''; loadDailyAppointments();">
+              Reset Search
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Appointment ID</th>
+                <th>Time Slot</th>
+                <th>Patient Details</th>
+                <th>Doctor & Dept</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="daily-schedule-tbody">
+              <tr><td colspan="6" style="text-align: center; padding: 30px;">Loading schedule...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Walk-In Patient & Booking Modal -->
+  <div class="modal-overlay" id="walkin-modal">
+    <div class="modal-container" style="max-width: 620px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-plus" style="color: var(--primary);"></i> Walk-in Consultation Booking</h3>
+        <button class="modal-close-btn" onclick="closeWalkinModal()">&times;</button>
+      </div>
+      <form id="walkin-patient-form">
+        <div class="modal-body">
+          
+          <div class="form-group" style="background: var(--bg-page); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <label style="display: flex; align-items: center; gap: 8px; font-weight: 700; cursor: pointer;">
+              <input type="checkbox" id="walkin-is-new" onchange="document.getElementById('new-patient-fields').style.display = this.checked ? 'block' : 'none'; document.getElementById('existing-patient-field').style.display = this.checked ? 'none' : 'block';">
+              <span>Register as a New Patient</span>
+            </label>
+          </div>
+
+          <!-- Existing Patient Selection -->
+          <div class="form-group" id="existing-patient-field">
+            <label class="form-label" for="walkin-patient-select">Select Registered Patient</label>
+            <select id="walkin-patient-select" class="form-select">
+              <option value="">-- Choose Patient --</option>
+            </select>
+          </div>
+
+          <!-- New Patient Fields (Hidden by default) -->
+          <div id="new-patient-fields" style="display: none; padding-bottom: 12px; border-bottom: 1px dashed var(--border-color); margin-bottom: 16px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="walkin-name" class="form-control" placeholder="Patient Name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" id="walkin-email" class="form-control" placeholder="patient@example.com">
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="text" id="walkin-phone" class="form-control" placeholder="+91 98220 12345">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Gender</label>
+                <select id="walkin-gender" class="form-select">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appointment Fields -->
+          <div class="form-group">
+            <label class="form-label" for="walkin-doctor-select">Consulting Doctor</label>
+            <select id="walkin-doctor-select" class="form-select" required>
+              <option value="">-- Choose Doctor --</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="walkin-date">Consultation Date</label>
+              <input type="date" id="walkin-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="walkin-time">Time Slot</label>
+              <select id="walkin-time" class="form-select" required>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="09:30 AM">09:30 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="10:30 AM">10:30 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="11:30 AM">11:30 AM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="02:30 PM">02:30 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="03:30 PM">03:30 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="04:30 PM">04:30 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="walkin-reason">Chief Medical Complaint / Reason</label>
+            <input type="text" id="walkin-reason" class="form-control" placeholder="E.g. fever, sudden chest pain, routine checkup" required>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" onclick="closeWalkinModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Book Consultation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reschedule Modal -->
+  <div class="modal-overlay" id="reschedule-modal">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3><i class="fa-regular fa-calendar-days" style="color: var(--primary);"></i> Reschedule Appointment</h3>
+        <button class="modal-close-btn" onclick="closeRescheduleModal()">&times;</button>
+      </div>
+      <form id="reschedule-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="reschedule-date">New Date</label>
+            <input type="date" id="reschedule-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="reschedule-time">New Time Slot</label>
+            <select id="reschedule-time" class="form-select" required>
+              <option value="09:00 AM">09:00 AM</option>
+              <option value="09:30 AM">09:30 AM</option>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="10:30 AM">10:30 AM</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="02:30 PM">02:30 PM</option>
+              <option value="03:00 PM">03:00 PM</option>
+              <option value="03:30 PM">03:30 PM</option>
+              <option value="04:00 PM">04:00 PM</option>
+              <option value="04:30 PM">04:30 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" onclick="closeRescheduleModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save New Slot</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/receptionist-dashboard.js"></script>
+</body>
+</html>

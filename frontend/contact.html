@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | CareConnect Hospital</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon-wrapper">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>Care<span class="highlight">Connect</span></div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="doctors.html">Find Doctor</a></li>
+        <li><a href="index.html#departments">Departments</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions" id="nav-actions">
+        <a href="login.html" class="btn btn-outline-dark btn-sm">Login</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding: 50px 0 80px;">
+    <div class="container">
+      
+      <div style="margin-bottom: 36px;">
+        <span class="section-tag"><i class="fa-solid fa-headset"></i> Get In Touch</span>
+        <h1 style="font-size: 2.2rem; font-weight: 800; color: var(--dark); margin-top: 6px;">Hospital Helpdesk & Enquiries</h1>
+        <p style="color: var(--text-muted); font-size: 1rem;">
+          Have questions regarding consultations, specialized therapies, or appointments? Reach out to our care team.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 36px; align-items: flex-start;">
+        
+        <!-- Contact Information Cards -->
+        <div>
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 24px;">
+            
+            <div style="display: flex; gap: 16px;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 4px;">Hospital Address</h4>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+                  FC Road Healthcare Enclave, Shivaji Nagar,<br>
+                  Pune - 411005, Maharashtra, India
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 16px;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--secondary-light); color: var(--secondary); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 4px;">Helpline Numbers</h4>
+                <p style="color: var(--text-muted); font-size: 0.92rem;">
+                  General Enquiry: <strong>+91 98765 43210</strong><br>
+                  Emergency Ambulance: <strong>+91 98765 43211</strong>
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 16px;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 4px;">Email Support</h4>
+                <p style="color: var(--text-muted); font-size: 0.92rem;">
+                  support@careconnect.example<br>
+                  appointments@careconnect.example
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 16px;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 4px;">Working Hours</h4>
+                <p style="color: var(--text-muted); font-size: 0.92rem;">
+                  OPD Timings: Monday – Saturday (09:00 AM – 06:00 PM)<br>
+                  Casualty & Emergency: <strong>24 Hours Open</strong>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-sm);">
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 20px;">
+              Send an Enquiry
+            </h3>
+
+            <form id="contact-form">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Your Full Name *</label>
+                <input type="text" id="contact-name" class="form-control" placeholder="Rohan Sharma" required>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="contact-email">Email Address *</label>
+                  <input type="email" id="contact-email" class="form-control" placeholder="rohan@example.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contact-phone">Phone Number</label>
+                  <input type="tel" id="contact-phone" class="form-control" placeholder="+91 98220 12345">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-message">Your Message / Query *</label>
+                <textarea id="contact-message" class="form-control" rows="4" placeholder="How can our clinical coordinator assist you today?" required></textarea>
+              </div>
+
+              <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-lg" style="width: 100%;">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 CareConnect Hospital &bull; "Your Health, Our Priority"</div>
+        <div><a href="index.html" style="color: #94a3b8;">Home</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit-btn');
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+
+      try {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+
+        const res = await apiFetch('/contact', {
+          method: 'POST',
+          body: JSON.stringify({ name, email, phone, message })
+        });
+
+        if (res.success) {
+          showToast('Message Sent', res.message, 'success');
+          document.getElementById('contact-form').reset();
+        }
+      } catch (error) {
+        showToast('Submission Failed', error.message || 'Unable to send message.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+      }
+    });
+  </script>
+</body>
+</html>
