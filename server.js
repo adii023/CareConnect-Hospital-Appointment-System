@@ -47,6 +47,38 @@ app.post('/api/contact', (req, res) => {
   });
 });
 
+// Firebase Firestore Status Endpoint
+app.get('/api/firebase/status', async (req, res) => {
+  try {
+    const { getFirestore } = require('./backend/config/firebase');
+    const firestore = getFirestore();
+    if (!firestore) {
+      return res.status(200).json({
+        connected: false,
+        message: 'Firebase credentials not active on this environment.'
+      });
+    }
+    const [doctorsSnap, deptsSnap, apptsSnap] = await Promise.all([
+      firestore.collection('doctors').get(),
+      firestore.collection('departments').get(),
+      firestore.collection('appointments').get()
+    ]);
+    return res.status(200).json({
+      connected: true,
+      projectId: 'careconnect-hospital-bd2d0',
+      database: 'Cloud Firestore',
+      stats: {
+        doctorsCount: doctorsSnap.size,
+        departmentsCount: deptsSnap.size,
+        appointmentsCount: apptsSnap.size
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({ connected: false, error: err.message });
+  }
+});
+
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorRoutes);
