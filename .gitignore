@@ -5,10 +5,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment variables
+# Environment variables & Service Account Keys
 .env
 .env.local
 .env.production
+*serviceAccountKey*.json
+backend/config/serviceAccountKey.json
+
 
 # SQLite WAL and shared memory temporary files
 database/*.db-shm

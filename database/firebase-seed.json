@@ -1,0 +1,456 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin Officer",
+      "email": "admin@careconnect.example",
+      "password": "$2b$10$WnCMu.dpzDF4HwQNrVgnIeUlVAO.DZsT5Zi/6Y.Z.nlAPJBP3/Ofq",
+      "role": "Admin",
+      "phone": "+91 9876543210",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 2,
+      "name": "Reception Desk",
+      "email": "receptionist@careconnect.example",
+      "password": "$2b$10$.kpStiOJx1cdtYUEJke/KO2Ac.JIrdEePgXALYQqQxJKDVrVxGPty",
+      "role": "Receptionist",
+      "phone": "+91 9876543211",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 3,
+      "name": "Rohan Sharma",
+      "email": "patient@careconnect.example",
+      "password": "$2b$10$EVQ96gPhSD.byHqxfA0oGeQSbC/5NmqL7Hdurnhbu6oSViSWvGgim",
+      "role": "Patient",
+      "phone": "+91 9822012345",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 4,
+      "name": "Ananya Deshmukh",
+      "email": "ananya@example.com",
+      "password": "$2b$10$EVQ96gPhSD.byHqxfA0oGeQSbC/5NmqL7Hdurnhbu6oSViSWvGgim",
+      "role": "Patient",
+      "phone": "+91 9822012346",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 5,
+      "name": "Vikram Joshi",
+      "email": "vikram@example.com",
+      "password": "$2b$10$EVQ96gPhSD.byHqxfA0oGeQSbC/5NmqL7Hdurnhbu6oSViSWvGgim",
+      "role": "Patient",
+      "phone": "+91 9822012347",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 6,
+      "name": "Pooja Mehta",
+      "email": "pooja@example.com",
+      "password": "$2b$10$EVQ96gPhSD.byHqxfA0oGeQSbC/5NmqL7Hdurnhbu6oSViSWvGgim",
+      "role": "Patient",
+      "phone": "+91 9822012348",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 7,
+      "name": "Suresh Patil",
+      "email": "suresh@example.com",
+      "password": "$2b$10$EVQ96gPhSD.byHqxfA0oGeQSbC/5NmqL7Hdurnhbu6oSViSWvGgim",
+      "role": "Patient",
+      "phone": "+91 9822012349",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 8,
+      "name": "Aditya Kulkarni",
+      "email": "test.patient.1791004570129@example.com",
+      "password": "$2b$10$XIvFIUCUkJwRGXfvN4SrHuVQxqpIxnGn3FN8LKJreNjMQoaDrUEJO",
+      "role": "Patient",
+      "phone": "9876543210",
+      "created_at": "2026-10-03 05:16:10"
+    },
+    {
+      "id": 9,
+      "name": "Aditya Kulkarni",
+      "email": "test.patient.1791004651415@example.com",
+      "password": "$2b$10$sVII0rQ2FVcx5CQ27n.iBuAFDj4Kkwl9mLcR.wtFlxw/swQ/6PD/q",
+      "role": "Patient",
+      "phone": "9876543210",
+      "created_at": "2026-10-03 05:17:31"
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "user_id": 3,
+      "date_of_birth": "1995-05-15",
+      "gender": "Male",
+      "address": "Flat 402, Sunshine Heights, FC Road, Pune",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 2,
+      "user_id": 4,
+      "date_of_birth": "1998-11-20",
+      "gender": "Female",
+      "address": "B-12 Green Valley, Kothrud, Pune",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 3,
+      "user_id": 5,
+      "date_of_birth": "1988-03-08",
+      "gender": "Male",
+      "address": "Plot 15, Nilgiri Park, Baner, Pune",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 4,
+      "user_id": 6,
+      "date_of_birth": "1992-09-25",
+      "gender": "Female",
+      "address": "304 Silver Crest, Viman Nagar, Pune",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 5,
+      "user_id": 7,
+      "date_of_birth": "1975-01-30",
+      "gender": "Male",
+      "address": "House 56, Shivaji Colony, Camp, Pune",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 6,
+      "user_id": 8,
+      "date_of_birth": "2003-04-12",
+      "gender": "Male",
+      "address": "Kothrud, Pune",
+      "created_at": "2026-10-03 05:16:10"
+    },
+    {
+      "id": 7,
+      "user_id": 9,
+      "date_of_birth": "2003-04-12",
+      "gender": "Male",
+      "address": "Kothrud, Pune",
+      "created_at": "2026-10-03 05:17:31"
+    }
+  ],
+  "departments": [
+    {
+      "id": 1,
+      "name": "General Medicine",
+      "description": "Comprehensive primary health care, diagnostic consultations, lifestyle management, and routine wellness screenings.",
+      "icon": "fa-stethoscope",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 2,
+      "name": "Cardiology",
+      "description": "Advanced clinical and interventional diagnosis and treatment of cardiovascular diseases, hypertension, and heart disorders.",
+      "icon": "fa-heart-pulse",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 3,
+      "name": "Dermatology",
+      "description": "Specialized skin, hair, and nail health care, clinical dermatologic therapies, and cosmetic dermatology.",
+      "icon": "fa-hand-dots",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 4,
+      "name": "Pediatrics",
+      "description": "Comprehensive healthcare, preventive vaccinations, infant care, and pediatric growth management for children.",
+      "icon": "fa-baby",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 5,
+      "name": "Orthopedics",
+      "description": "Treatment for bone fractures, joint problems, sports injuries, arthritis, and orthopedic reconstructive procedures.",
+      "icon": "fa-bone",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 6,
+      "name": "Gynecology",
+      "description": "Comprehensive women healthcare, pregnancy care, reproductive health, and obstetric wellness guidance.",
+      "icon": "fa-person-dress",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 7,
+      "name": "Neurology",
+      "description": "Diagnosis, therapy, and neuro-rehabilitation for brain, spine, nerve, and neuromuscular conditions.",
+      "icon": "fa-brain",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 8,
+      "name": "ENT (Otolaryngology)",
+      "description": "Medical and surgical care for disorders of the ear, nose, throat, sinuses, and larynx.",
+      "icon": "fa-head-side-cough",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 9,
+      "name": "Nephrology_1791004570601",
+      "description": "Diagnosis and care of kidney conditions",
+      "icon": "fa-kidneys",
+      "created_at": "2026-10-03 05:16:10"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Dr. Rahul Sharma",
+      "email": "dr.rahul@careconnect.example",
+      "phone": "+91 9123456701",
+      "qualification": "MBBS, MD (Internal Medicine)",
+      "specialization": "General Physician",
+      "department_id": 1,
+      "experience": 10,
+      "consultation_fee": 500,
+      "gender": "Male",
+      "available_days": "Mon - Sat",
+      "available_time": "09:00 AM - 02:00 PM",
+      "description": "Experienced physician specialized in managing acute viral conditions, hypertension, diabetes mellitus, and chronic preventive healthcare.",
+      "avatar": "doctor_m1.png",
+      "rating": 4.9,
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Priya Deshmukh",
+      "email": "dr.priya@careconnect.example",
+      "phone": "+91 9123456702",
+      "qualification": "MBBS, MD, DM (Cardiology)",
+      "specialization": "Senior Cardiologist",
+      "department_id": 2,
+      "experience": 12,
+      "consultation_fee": 1000,
+      "gender": "Female",
+      "available_days": "Mon - Fri",
+      "available_time": "10:00 AM - 04:00 PM",
+      "description": "Consultant interventional cardiologist with extensive expertise in echocardiography, cardiac preventative scans, and coronary artery disease management.",
+      "avatar": "doctor_f1.png",
+      "rating": 5,
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Amit Patil",
+      "email": "dr.amit@careconnect.example",
+      "phone": "+91 9123456703",
+      "qualification": "MBBS, MS (Orthopedics)",
+      "specialization": "Orthopedic Specialist",
+      "department_id": 5,
+      "experience": 8,
+      "consultation_fee": 800,
+      "gender": "Male",
+      "available_days": "Mon, Wed, Fri",
+      "available_time": "09:30 AM - 03:30 PM",
+      "description": "Specialist in sports injury rehabilitation, arthroscopy, joint replacement guidance, and degenerative spinal conditions.",
+      "avatar": "doctor_m2.png",
+      "rating": 4.8,
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Sneha Kulkarni",
+      "email": "dr.sneha@careconnect.example",
+      "phone": "+91 9123456704",
+      "qualification": "MBBS, MD (Dermatology)",
+      "specialization": "Consultant Dermatologist",
+      "department_id": 3,
+      "experience": 7,
+      "consultation_fee": 700,
+      "gender": "Female",
+      "available_days": "Tue, Thu, Sat",
+      "available_time": "11:00 AM - 05:00 PM",
+      "description": "Dermatologist offering advanced treatment for clinical eczema, acne vulgaris, hair loss, and cosmetic laser therapies.",
+      "avatar": "doctor_f2.png",
+      "rating": 4.9,
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Rajesh Nair",
+      "email": "dr.rajesh@careconnect.example",
+      "phone": "+91 9123456705",
+      "qualification": "MBBS, DCH, MD (Pediatrics)",
+      "specialization": "Pediatric Specialist",
+      "department_id": 4,
+      "experience": 11,
+      "consultation_fee": 600,
+      "gender": "Male",
+      "available_days": "Mon - Sat",
+      "available_time": "09:00 AM - 01:30 PM",
+      "description": "Dedicated child specialist dedicated to infant growth assessments, childhood allergies, nutrition, and comprehensive immunization plans.",
+      "avatar": "doctor_m3.png",
+      "rating": 4.8,
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 6,
+      "name": "Dr. Sunita Verma",
+      "email": "dr.sunita@careconnect.example",
+      "phone": "+91 9123456706",
+      "qualification": "MBBS, MS, DGO",
+      "specialization": "Gynecologist & Obstetrician",
+      "department_id": 6,
+      "experience": 14,
+      "consultation_fee": 900,
+      "gender": "Female",
+      "available_days": "Mon - Fri",
+      "available_time": "10:30 AM - 04:30 PM",
+      "description": "Expert in maternal care, prenatal monitoring, reproductive endocrinology, and minimally invasive gynecologic therapies.",
+      "avatar": "doctor_f3.png",
+      "rating": 4.9,
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 7,
+      "name": "Dr. Vikram Mehta",
+      "email": "dr.vikram@careconnect.example",
+      "phone": "+91 9123456707",
+      "qualification": "MBBS, MD, DM (Neurology)",
+      "specialization": "Senior Neurologist",
+      "department_id": 7,
+      "experience": 15,
+      "consultation_fee": 1200,
+      "gender": "Male",
+      "available_days": "Mon, Wed, Fri",
+      "available_time": "01:00 PM - 06:00 PM",
+      "description": "Renowned neurologist specialized in migraines, neurovascular stroke prevention, epilepsy, and peripheral neuropathy disorders.",
+      "avatar": "doctor_m4.png",
+      "rating": 4.9,
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 8,
+      "name": "Dr. Kavita Iyer",
+      "email": "dr.kavita@careconnect.example",
+      "phone": "+91 9123456708",
+      "qualification": "MBBS, MS (ENT)",
+      "specialization": "ENT Surgeon & Specialist",
+      "department_id": 8,
+      "experience": 9,
+      "consultation_fee": 650,
+      "gender": "Female",
+      "available_days": "Tue - Sat",
+      "available_time": "09:30 AM - 03:00 PM",
+      "description": "Ear, Nose & Throat specialist focusing on sinusitis treatments, hearing disorders, allergic rhinitis, and micro-laryngeal surgeries.",
+      "avatar": "doctor_f4.png",
+      "rating": 4.7,
+      "created_at": "2026-10-03 04:00:27"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "doctor_id": 1,
+      "appointment_date": "2026-10-06",
+      "appointment_time": "10:00 AM",
+      "reason": "Seasonal flu symptoms and persistent dry cough",
+      "notes": "Follow up after 5 days if fever persists",
+      "status": "Confirmed",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 2,
+      "patient_id": 1,
+      "doctor_id": 2,
+      "appointment_date": "2026-10-10",
+      "appointment_time": "11:30 AM",
+      "reason": "Annual cardiac wellness review & ECG consultation",
+      "notes": "Please carry previous lipid profile reports",
+      "status": "Confirmed",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 3,
+      "patient_id": 2,
+      "doctor_id": 4,
+      "appointment_date": "2026-10-08",
+      "appointment_time": "02:00 PM",
+      "reason": "Persistent skin allergy and redness on forearms",
+      "notes": "Patch test requested",
+      "status": "Pending",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 4,
+      "patient_id": 3,
+      "doctor_id": 3,
+      "appointment_date": "2026-10-05",
+      "appointment_time": "10:30 AM",
+      "reason": "Right knee pain after sports workout",
+      "notes": "Brought X-Ray report from diagnostic centre",
+      "status": "Confirmed",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 5,
+      "patient_id": 4,
+      "doctor_id": 6,
+      "appointment_date": "2026-09-23",
+      "appointment_time": "11:00 AM",
+      "reason": "Routine wellness checkup and consultation",
+      "notes": "Patient reported feeling completely well",
+      "status": "Completed",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 6,
+      "patient_id": 5,
+      "doctor_id": 7,
+      "appointment_date": "2026-09-18",
+      "appointment_time": "02:30 PM",
+      "reason": "Severe recurrent morning migraines",
+      "notes": "Prescribed prophylactic medicine and headache diary",
+      "status": "Completed",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 7,
+      "patient_id": 1,
+      "doctor_id": 5,
+      "appointment_date": "2026-09-08",
+      "appointment_time": "09:30 AM",
+      "reason": "General health consultation",
+      "notes": "Cancelled due to patient personal travel",
+      "status": "Cancelled",
+      "created_at": "2026-10-03 04:00:27"
+    },
+    {
+      "id": 8,
+      "patient_id": 6,
+      "doctor_id": 1,
+      "appointment_date": "2026-10-07",
+      "appointment_time": "02:30 PM",
+      "reason": "General wellness checkup and blood pressure reading",
+      "notes": "",
+      "status": "Cancelled",
+      "created_at": "2026-10-03 05:16:10"
+    },
+    {
+      "id": 9,
+      "patient_id": 7,
+      "doctor_id": 1,
+      "appointment_date": "2026-10-07",
+      "appointment_time": "02:30 PM",
+      "reason": "General wellness checkup and blood pressure reading",
+      "notes": "",
+      "status": "Cancelled",
+      "created_at": "2026-10-03 05:17:31"
+    }
+  ],
+  "exported_at": "2026-10-03T06:00:44.153Z"
+}
