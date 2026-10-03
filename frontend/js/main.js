@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbarAuth();
   initMobileMenu();
   highlightActiveNavLink();
+  initAnimatedCounters();
 });
 
 // Render user badge or Login/Register buttons in navbar
@@ -66,4 +67,42 @@ function highlightActiveNavLink() {
       link.classList.remove('active');
     }
   });
+}
+
+// 60 FPS Animated Counters with Ease-Out Physics on Scroll
+function initAnimatedCounters() {
+  const counterElements = document.querySelectorAll('.counter-value[data-target]');
+  if (!counterElements.length) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 1600;
+        const startTime = performance.now();
+
+        function updateCount(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out cubic curve: 1 - (1 - t)^3
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.floor(easeOut * target);
+          el.textContent = currentVal.toLocaleString() + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            el.textContent = target.toLocaleString() + suffix;
+          }
+        }
+
+        requestAnimationFrame(updateCount);
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  counterElements.forEach(el => observer.observe(el));
 }

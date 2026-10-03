@@ -33,14 +33,29 @@
 
 .printable-slip {
   background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  border: 1px solid #bae6fd;
   padding: 36px;
   max-width: 680px;
   margin: 0 auto;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 16px 40px -10px rgba(2, 132, 199, 0.12);
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: #1e293b;
+  position: relative;
+  overflow: hidden;
+}
+
+.printable-slip::before {
+  content: '\f21e';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-size: 160px;
+  color: rgba(2, 132, 199, 0.035);
+  pointer-events: none;
+  line-height: 1;
 }
 
 .slip-header {

@@ -45,9 +45,10 @@ async function loadDoctors() {
   if (!container) return;
 
   container.innerHTML = `
-    <div class="spinner-wrapper" style="grid-column: 1 / -1;">
-      <div class="spinner"></div>
-      <p>Loading doctors...</p>
+    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 26px;">
+      <div class="doctor-card skeleton-shimmer" style="height: 380px;"></div>
+      <div class="doctor-card skeleton-shimmer" style="height: 380px;"></div>
+      <div class="doctor-card skeleton-shimmer" style="height: 380px;"></div>
     </div>
   `;
 
@@ -107,13 +108,15 @@ function renderDoctorCards(doctors) {
 
   container.innerHTML = doctors.map(doc => {
     const initials = doc.name.replace('Dr. ', '').split(' ').map(n => n[0]).join('').slice(0, 2);
-    const avatarColor = doc.gender === 'Female' ? 'linear-gradient(135deg, #0d9488, #14b8a6)' : 'linear-gradient(135deg, #0284c7, #2563eb)';
+    const avatarColor = doc.gender === 'Female' ? 'linear-gradient(135deg, #0d9488, #14b8a6)' : 'linear-gradient(135deg, hsl(var(--primary-h), var(--primary-s), var(--primary-l)), #2563eb)';
+    const avatarShadow = doc.gender === 'Female' ? '0 6px 16px rgba(13, 148, 136, 0.3)' : '0 6px 16px var(--primary-glow)';
 
     return `
       <div class="doctor-card">
         <div class="doc-card-top">
-          <div class="doc-avatar" style="background: ${avatarColor};">
+          <div class="doc-avatar" style="background: ${avatarColor}; box-shadow: ${avatarShadow}; position: relative; flex-shrink: 0;">
             ${initials}
+            <span class="pulse-indicator" style="position: absolute; bottom: 2px; right: 2px; width: 10px; height: 10px; border: 2px solid #ffffff;" title="Available This Week"></span>
           </div>
           <div class="doc-header-info">
             <span class="doc-dept-badge">${escapeHtml(doc.department_name)}</span>
@@ -144,9 +147,9 @@ function renderDoctorCards(doctors) {
             <span>${escapeHtml(doc.available_time)}</span>
           </div>
 
-          <div class="doc-fee-badge">
-            <span>Consultation Fee</span>
-            <strong>${formatCurrency(doc.consultation_fee)}</strong>
+          <div class="doc-fee-badge" style="background: linear-gradient(135deg, var(--primary-light) 0%, #e0f2fe 100%); border: 1px solid var(--primary-border);">
+            <span style="color: var(--primary); font-weight: 700;">Consultation Fee</span>
+            <strong style="color: var(--dark); font-size: 1.1rem; font-family: 'Outfit', sans-serif;">${formatCurrency(doc.consultation_fee)}</strong>
           </div>
         </div>
 

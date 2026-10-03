@@ -81,25 +81,35 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.25s var(--spring-timing);
   text-align: left;
+  position: relative;
 }
 
 .sidebar-menu a i, .sidebar-menu button i {
   font-size: 1.1rem;
   width: 20px;
   text-align: center;
+  transition: transform 0.25s var(--spring-timing);
 }
 
 .sidebar-menu a:hover, .sidebar-menu button:hover {
   background: var(--bg-page);
   color: var(--dark);
+  transform: translateX(4px);
+}
+
+.sidebar-menu a:hover i, .sidebar-menu button:hover i {
+  transform: scale(1.15);
+  color: var(--primary);
 }
 
 .sidebar-menu a.active, .sidebar-menu button.active {
-  background: var(--primary-light);
+  background: linear-gradient(135deg, var(--primary-light) 0%, #e0f2fe 100%);
   color: var(--primary);
   font-weight: 700;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+  border-left: 3px solid var(--primary);
 }
 
 .sidebar-footer {
@@ -159,38 +169,62 @@
   align-items: center;
   gap: 18px;
   box-shadow: var(--shadow-sm);
-  transition: var(--transition);
+  transition: all 0.3s var(--spring-timing);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px -4px rgba(15, 23, 42, 0.08), var(--shadow-md);
   border-color: var(--primary-border);
 }
 
+.stat-card:hover::before {
+  opacity: 1;
+}
+
 .stat-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   flex-shrink: 0;
+  transition: transform 0.3s var(--spring-timing);
 }
 
-.stat-icon.blue { background: var(--primary-light); color: var(--primary); }
-.stat-icon.teal { background: var(--secondary-light); color: var(--secondary); }
-.stat-icon.green { background: #dcfce7; color: #15803d; }
-.stat-icon.amber { background: #fef3c7; color: #b45309; }
-.stat-icon.red { background: #fee2e2; color: #b91c1c; }
+.stat-card:hover .stat-icon {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.stat-icon.blue { background: var(--primary-light); color: var(--primary); box-shadow: 0 4px 14px var(--primary-glow); }
+.stat-icon.teal { background: var(--secondary-light); color: var(--secondary); box-shadow: 0 4px 14px var(--secondary-glow); }
+.stat-icon.green { background: #dcfce7; color: #15803d; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25); }
+.stat-icon.amber { background: #fef3c7; color: #b45309; box-shadow: 0 4px 14px rgba(217, 119, 6, 0.25); }
+.stat-icon.red { background: #fee2e2; color: #b91c1c; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25); }
 
 .stat-info h3 {
-  font-size: 1.8rem;
+  font-size: 1.85rem;
   font-weight: 800;
   color: var(--dark);
   line-height: 1.1;
   margin-bottom: 4px;
+  font-family: 'Outfit', sans-serif;
 }
 
 .stat-info p {
@@ -213,6 +247,11 @@
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow-sm);
+  transition: transform 0.3s var(--spring-timing);
+}
+
+.chart-card:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .chart-header {
@@ -223,43 +262,47 @@
 }
 
 .chart-header h3 {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--dark);
+  font-family: 'Outfit', sans-serif;
 }
 
 .chart-bars-container {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .chart-bar-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .chart-bar-label {
   display: flex;
   justify-content: space-between;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-main);
 }
 
 .chart-bar-track {
-  height: 10px;
+  height: 12px;
   background: var(--bg-page);
   border-radius: var(--radius-full);
   overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .chart-bar-fill {
   height: 100%;
   border-radius: var(--radius-full);
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, hsl(var(--primary-h), var(--primary-s), var(--primary-l)), hsl(var(--secondary-h), var(--secondary-s), var(--secondary-l)));
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: barGrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 2px 8px var(--primary-glow);
 }
 
 /* Data Tables & Filter Bars */

@@ -93,7 +93,7 @@
           <div class="hero-visual">
             <div class="medical-hero-card">
               <div class="card-header-badge">
-                <i class="fa-solid fa-circle-check"></i> Doctor Available Today
+                <span class="pulse-indicator"></span> Doctor Available Today
               </div>
 
               <div class="hero-doctor-preview">
@@ -295,29 +295,29 @@
       </div>
     </section>
 
-    <!-- Hospital Highlights & Viva Demonstration Stats -->
-    <section style="padding: 70px 0; background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%); color: #ffffff;">
+    <!-- Hospital Highlights & Viva Demonstration Stats with Animated Counters -->
+    <section style="padding: 70px 0; background: linear-gradient(135deg, hsl(var(--primary-h), var(--primary-s), 48%) 0%, hsl(var(--secondary-h), var(--secondary-s), 38%) 100%); color: #ffffff; position: relative; overflow: hidden;">
       <div class="container">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
-          <div>
-            <div style="font-size: 2.8rem; font-weight: 800; line-height: 1;">8+</div>
-            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 6px;">Specialized Departments</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; text-align: center;">
+          <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); border-radius: var(--radius-lg); padding: 28px 16px; border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+            <div class="counter-value" data-target="8" data-suffix="+" style="font-size: 3.2rem; font-weight: 800; line-height: 1; font-family: 'Outfit', sans-serif;">8+</div>
+            <p style="font-size: 0.95rem; opacity: 0.95; margin-top: 8px; font-weight: 600;">Specialized Departments</p>
           </div>
-          <div>
-            <div style="font-size: 2.8rem; font-weight: 800; line-height: 1;">50+</div>
-            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 6px;">Expert Doctors</p>
+          <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); border-radius: var(--radius-lg); padding: 28px 16px; border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+            <div class="counter-value" data-target="50" data-suffix="+" style="font-size: 3.2rem; font-weight: 800; line-height: 1; font-family: 'Outfit', sans-serif;">50+</div>
+            <p style="font-size: 0.95rem; opacity: 0.95; margin-top: 8px; font-weight: 600;">Expert Doctors</p>
           </div>
-          <div>
-            <div style="font-size: 2.8rem; font-weight: 800; line-height: 1;">1,000+</div>
-            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 6px;">Registered Patients</p>
+          <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); border-radius: var(--radius-lg); padding: 28px 16px; border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+            <div class="counter-value" data-target="1000" data-suffix="+" style="font-size: 3.2rem; font-weight: 800; line-height: 1; font-family: 'Outfit', sans-serif;">1,000+</div>
+            <p style="font-size: 0.95rem; opacity: 0.95; margin-top: 8px; font-weight: 600;">Registered Patients</p>
           </div>
-          <div>
-            <div style="font-size: 2.8rem; font-weight: 800; line-height: 1;">24/7</div>
-            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 6px;">Appointment Access</p>
+          <div style="background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); border-radius: var(--radius-lg); padding: 28px 16px; border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+            <div class="counter-value" data-target="24" data-suffix="/7" style="font-size: 3.2rem; font-weight: 800; line-height: 1; font-family: 'Outfit', sans-serif;">24/7</div>
+            <p style="font-size: 0.95rem; opacity: 0.95; margin-top: 8px; font-weight: 600;">Appointment Access</p>
           </div>
         </div>
-        <div style="text-align: center; margin-top: 24px; font-size: 0.8rem; opacity: 0.75;">
-          * Demonstration statistics for academic evaluation and clinical viva presentation.
+        <div style="text-align: center; margin-top: 24px; font-size: 0.85rem; opacity: 0.85;">
+          * Live demonstration statistics for academic evaluation and clinical viva presentation.
         </div>
       </div>
     </section>
