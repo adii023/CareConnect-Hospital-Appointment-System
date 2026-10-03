@@ -1,8 +1,13 @@
 // ===================================================================
 // CARECONNECT HOSPITAL - API CLIENT & UTILITIES
 // ===================================================================
-// Central API endpoint (defaults to /api; can be overridden for Render/Vercel production deployments)
-const API_BASE = window.CARECONNECT_API_URL || localStorage.getItem('careconnect_api_url') || '/api';
+// Central API endpoint:
+// Automatically uses '/api' for local development, and your live Render backend for Vercel production
+const RENDER_BACKEND_URL = 'https://careconnect-hospital-appointment-system.onrender.com/api';
+const API_BASE = window.CARECONNECT_API_URL 
+  || localStorage.getItem('careconnect_api_url') 
+  || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '/api' : RENDER_BACKEND_URL);
+
 
 // Token Management in localStorage
 function getAuthToken() {
